@@ -1,0 +1,50 @@
+/*Style all site*/
+body{
+    color:aliceblue;
+}
+
+/*Style block -  header*/
+#section-header h1{
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/*Style block - work area*/
+#section-workArea #transcription {
+    display: none;
+}
+
+#section-workArea #inputCity{
+    margin-bottom: 1rem;
+}
+
+/*Style block - map*/
+#section-map #map {
+    width: 100%;
+    height: 100%;
+    margin: 2rem 0;
+    padding: 0;
+    min-height: 500px;
+}
+
+/*Style modal help*/
+.modal-content {
+    color: #464a4c;
+    padding: 20px;
+}
+
+.modal-content h2 {
+    border-bottom: 2px solid maroon;
+    font-weight: normal;
+    padding-bottom: 5px;
+}
+.modal-content .fa-2x {
+    font-size: 1.3em;
+}
+
+
+@media (max-width:320px) {
+    #section-workArea .btn-group{
+        font-size: 10px;
+    }
+}

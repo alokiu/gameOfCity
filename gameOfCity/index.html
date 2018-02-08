@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Игра в Города</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/gradient.css" rel="stylesheet" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="css/main.css" rel="stylesheet" />
+    <script charset="windows-1251" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+    <!-- Задний фон-->
+    <canvas id="pixie"></canvas>
+    <div id="section-header">
+        <div class="container">
+            <div class="row">
+                <h1>Игра в города!!!</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Основная секция-->
+    <div id="section-workArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <textarea id="transcription" readonly="readonly"></textarea>
+                    <input type="text" class="form-control" id="inputCity" placeholder="Введите название города" aria-label="Введите название города" aria-describedby="basic-addon2">
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-secondary" id="buttonCity" type="button" onclick="manageGame()">Готово</button>
+                        <button id="button-play-ws" title="Включить микрофон"><i class="fa fa-microphone fa-2x" aria-hidden="true"></i></button>
+                        <button id="button-stop-ws" title="Отключить микрофон"><i class="fa fa-microphone-slash fa-2x" aria-hidden="true"></i></button>
+                        <button id="clear-all" title="Очистить поле"><i class="fa fa-eraser fa-2x" aria-hidden="true"></i></button>
+                        <button id="help" title="Правила"><i class="fa fa-question fa-2x" data-toggle="modal" data-target=".bd-help-modal-lg"></i></button>
+                        <button id="giveUp" title="Сдаться"><i class="fa fa-flag fa-2x" onclick="surrender()"></i></button>
+                        <button id="town" title="Города"><i class="fa fa-building fa-2x" onclick="citiesThatYouCanUse()" data-toggle="modal" data-target=".bd-town-modal-lg"></i></button>
+                    </div>
+                </div>
+                <label id="compSay"></label>
+            </div>
+        </div>
+    </div>
+    <!-- Секция карты-->
+    <div id="section-map">
+        <div class="container">
+            <div class="row">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Большие модальное окно помощи-->
+    <div class="modal fade bd-help-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <h2>Правила игры в города</h2>
+                <p>Человек и компьютер по очереди называют города таким образом, чтобы название следующего города начиналось на последнюю букву предыдущего. Игра продолжается до тех пор, пока у одного из участников не закончатся варианты</p>
+                <p>Кнопка Готово для ввода города</p>
+                <i class="fa fa-microphone fa-2x" aria-hidden="true"> - Включить микрофон для записи хода</i>
+                <br />
+                <i class="fa fa-microphone-slash fa-2x" aria-hidden="true"> - Отключить микрофон</i>
+                <br />
+                <i class="fa fa-eraser fa-2x" aria-hidden="true"> - Очистить поле ввода</i>
+                <br />
+                <i class="fa fa-flag fa-2x"> - Сдаться компьютеру</i>
+                <br />
+                <i class="fa fa-building fa-2x"> - Посмотреть города которые можно использовать</i>
+            </div>
+        </div>
+    </div>
+    <!-- Большие модальное окно об итогах игры-->
+    <div class="modal fade bd-endGame-modal-lg" id="endGame" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <h2 id="win"></h2>
+                <div col-md-6>
+                    <p id="compCity"></p>
+                </div>
+                <div col-md-6>
+                    <p id="playCity"></p>
+                </div>
+                <p id="compTotal"></p>
+                <p id="playTotal"></p>
+            </div>
+        </div>
+    </div>
+    <!-- Большие модальное окно города-->
+    <div class="modal fade bd-town-modal-lg" id="town" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <h2>Города которые можно использовать</h2>
+                <p id="townCan"></p>
+            </div>
+        </div>
+    </div>
+
+    <script charset="windows-1251" type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script charset="windows-1251" type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script charset="windows-1251" type="text/javascript" src="js/parallaxsoon2.js"></script>
+    <script charset="windows-1251" type="text/javascript" src="js/WebSpeech.js"></script>
+    <script charset="windows-1251" type="text/javascript" src="js/yandexMap.js"></script>
+    <script charset="windows-1251" type="text/javascript" src="js/myJs.js"></script>
+</body>
+    </html>
